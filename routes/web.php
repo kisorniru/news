@@ -14,8 +14,17 @@ use App\Http\Controllers\NewsAstronController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::post('/newsastrons', [NewsAstronController::class, 'store'])->name('newsastrons.store');
+Route::resource('/', NewsAstronController::class)
+		->names([
+		    'index' 	=> 'newsastrons.index',
+		    'create' 	=> 'newsastrons.create',
+		    'store' 	=> 'newsastrons.store',
+		    'show' 		=> 'newsastrons.show',
+		    'edit' 		=> 'newsastrons.edit',
+		    'update' 	=> 'newsastrons.update',
+		    'destroy' 	=> 'newsastrons.destroy'
+		]);

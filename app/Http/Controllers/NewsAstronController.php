@@ -19,6 +19,11 @@ class NewsAstronController extends Controller
      */
     public function index()
     {
+        // $ms =  $newsAstron->get();
+        
+        $NewsAstrons = NewsAstron::get();
+        return view('show')->with('NewsAstrons', $NewsAstrons);
+
         $NewsAstron = NewsAstron::get();
         $formatter = Formatter::make($NewsAstron, Formatter::JSON);
         $xml   = $formatter->toXml();
@@ -41,7 +46,7 @@ class NewsAstronController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -70,7 +75,7 @@ class NewsAstronController extends Controller
      */
     public function show(newsAstron $newsAstron)
     {
-        //
+        return "Hello-1";
     }
 
     /**
@@ -81,7 +86,7 @@ class NewsAstronController extends Controller
      */
     public function edit(newsAstron $newsAstron)
     {
-        //
+        return "Hello-2";
     }
 
     /**
@@ -104,6 +109,7 @@ class NewsAstronController extends Controller
      */
     public function destroy(newsAstron $newsAstron)
     {
-        //
+        return "Hello-3";
+        return $newsAstron;
     }
 }
