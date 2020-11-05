@@ -14,8 +14,9 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "soapbox/laravel-formatter": "2.x",
-        "phpoffice/phpspreadsheet": "^1.15"
+        "laravelcollective/html": "^6.2",
+        "phpoffice/phpspreadsheet": "^1.15",
+        "soapbox/laravel-formatter": "2.x"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

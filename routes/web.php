@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/newsastrons/export/', [NewsAstronController::class, 'index']);
+Route::post('/newsastrons', [NewsAstronController::class, 'store'])->name('newsastrons.store');

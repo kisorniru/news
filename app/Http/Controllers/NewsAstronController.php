@@ -52,7 +52,14 @@ class NewsAstronController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $NewsAstron = new NewsAstron;
+        $NewsAstron->headline = $request['headline'];
+        $NewsAstron->paragraph_1 = $request->paragraph_1;
+        $NewsAstron->paragraph_2 = $request->paragraph_2;
+        $NewsAstron->paragraph_3 = $request->paragraph_3;
+        $NewsAstron->save();
+
+        return back()->with('status', 'Successfully added!');
     }
 
     /**
