@@ -17,26 +17,32 @@ class NewsAstronController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function export($id)
     {
-        // $ms =  $newsAstron->get();
-        
-        $NewsAstrons = NewsAstron::get();
-        return view('show')->with('NewsAstrons', $NewsAstrons);
-
-        $NewsAstron = NewsAstron::get();
+        $NewsAstron = NewsAstron::find($id);
         $formatter = Formatter::make($NewsAstron, Formatter::JSON);
         $xml   = $formatter->toXml();
         // return $xml;
 
         //config
-        $namefile = "news.xml";
+        $namefile = "newsAstron.xml";
         $content = $xml;
 
         //save file
         $file = fopen($namefile, "w") or die("Unable to open file!");
         fwrite($file, $content);
         fclose($file);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $NewsAstrons = NewsAstron::get();
+        return view('show')->with('NewsAstrons', $NewsAstrons);
     }
 
     /**

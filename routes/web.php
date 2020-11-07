@@ -14,9 +14,7 @@ use App\Http\Controllers\NewsAstronController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/export/{id}',  [NewsAstronController::class, 'export']);
 
 Route::resource('/', NewsAstronController::class)
 		->names([
