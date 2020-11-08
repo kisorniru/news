@@ -4,7 +4,7 @@
 
 	<head>
 
-	  	<title>Bootstrap Example</title>
+	  	<title>Ekattor Media Limited</title>
 	  	<meta charset="utf-8">
 	  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -50,7 +50,7 @@
 			
 			<div class="py-3 text-center">
 
-				<img class="d-block mx-auto mb-4" src="{{ asset('ekattor_tv_logo.png') }}" alt="" width="72" height="72">
+				<img class="d-block mx-auto mb-4" src="{{ asset('ekattor_tv_logo.png') }}" alt="" width="auto" height="108">
 
 			</div>
 
@@ -60,9 +60,12 @@
 					
 					<h4 class="mb-3">Add News</h4>
 					@if (session('status'))
-					    <div class="alert alert-success">
+					    <div class="alert alert-success alert-dismissible fade show" role="alert">
 					        {{ session('status') }}
-					    </div>
+						    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
 					@endif
 
 					{{  Form::open( array('url' => route('newsastrons.store'), 'files'=>true,'method'=>'post') )  }}
@@ -70,7 +73,7 @@
 						<div class="mb-3">
 
 							<label for="headline">Headline</label>
-							<input type="text" class="form-control" name="headline" placeholder="Headline goes here ..." required="required">
+							<input type="text" class="form-control" name="headline" placeholder="Headline goes here ..." required="required" autofocus>
 
 						</div>
 
@@ -85,13 +88,6 @@
 
 							<label for="newsline2">News String 2</label>
 							<input type="text" class="form-control" name="paragraph_2" placeholder="News String goes here ..." required="required">
-
-						</div>
-
-						<div class="mb-3">
-
-							<label for="newsline3">News String 3<span class="text-muted">(Optional)</span></label>
-							<input type="text" class="form-control" name="paragraph_3" placeholder="News String goes here ...">
 
 						</div>
 

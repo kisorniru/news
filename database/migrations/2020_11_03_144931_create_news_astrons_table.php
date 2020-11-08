@@ -18,7 +18,6 @@ class CreateNewsAstronsTable extends Migration
             $table->string('headline', 500);
             $table->string('paragraph_1', 1000);
             $table->string('paragraph_2', 1000)->nullable();
-            $table->string('paragraph_3', 1000)->nullable();
             $table->integer('isExported')->default(0);
             $table->timestamps();
         });

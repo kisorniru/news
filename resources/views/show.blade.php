@@ -4,7 +4,7 @@
 
 	<head>
 
-	  	<title>Bootstrap Example</title>
+	  	<title>Ekattor Media Limited</title>
 	  	<meta charset="utf-8">
 	  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -37,6 +37,10 @@
 			  color: rgb(163, 37, 31);
 			}
 
+			.recent {
+				font-size: 70px;
+			}
+
 	  	</style>
 	</head>
 	
@@ -56,7 +60,7 @@
 			
 			<div class="py-3 text-center">
 
-				<img class="d-block mx-auto mb-4" src="{{ asset('ekattor_tv_logo.png') }}" alt="" width="72" height="72">
+				<img class="d-block mx-auto mb-4" src="{{ asset('ekattor_tv_logo.png') }}" alt="" width="auto" height="108">
 
 			</div>
 
@@ -64,7 +68,26 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<h4 class="mb-3">Recent News</h4>
+					<h4 class="mb-3">Current News</h4>
+					<!-- @if (session('recentHeadline')) -->
+					    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+					        {{ session('recentHeadline') }} <br>
+					        {{ session('recentParagraph_1') }} <br>
+					        {{ session('recentParagraph_2') }}
+					        <button type="button" class="close recent" aria-label="Close">
+								<span aria-hidden="true">{{ session('recentHeadlineID') }}</span>
+							</button>
+					    </div>
+					<!-- @endif -->
+
+					@if (session('status'))
+					    <div class="alert alert-success alert-dismissible fade show" role="alert">
+					        {{ session('status') }}
+					        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					    </div>
+					@endif
 
 					<table class="table table-hover">
 						<thead>
@@ -77,15 +100,16 @@
 						<tbody>
 							@foreach ($NewsAstrons as $NewsAstron)
 								<tr>
-									<th scope="row">{{ $loop->iteration }}</th>
+									<th scope="row">{{ $NewsAstron->id }}</th>
 									<td>
-										<code>Headline:</code><br>{{ $NewsAstron->headline }} <br>
-										<code>paragraph:</code><br>{{ $NewsAstron->paragraph_1 }} <br>
+										<code>Headline:</code><br>
+										{{ $NewsAstron->headline }} <br>
+										<code>paragraph:</code><br>
+										{{ $NewsAstron->paragraph_1 }} <br>
 										{{ $NewsAstron->paragraph_2 }} <br>
-										{{ $NewsAstron->paragraph_3 }} <br>
 									</td>
 									<td>
-										<a href="{{ url('/export/1') }}"><i class="fas fa-file-download fa-5x"></i></a>
+										<a href="{{ url('/export', $NewsAstron->id) }}"><i class="fas fa-file-download fa-5x"></i></a>
 									</td>
 								</tr>
 							@endforeach
@@ -98,7 +122,7 @@
 
 			<footer class="my-5 pt-5 text-muted text-center text-small">
 
-				<p class="mb-1">&copy; 2017- Company Name</p>
+				<p class="mb-1">&copy; 2020- Ekattor Media Limited</p>
 				
 				<ul class="list-inline">
 					<li class="list-inline-item"><a href="#">Privacy</a></li>

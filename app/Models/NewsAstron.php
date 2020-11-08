@@ -18,7 +18,6 @@ class NewsAstron extends Model
         'headline',
         'paragraph_1',
         'paragraph_2',
-        'paragraph_3',
         'isExported',
     ];
 }
