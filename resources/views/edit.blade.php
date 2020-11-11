@@ -8,7 +8,6 @@
 	  	<meta charset="utf-8">
 	  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 
 	  	<style type="text/css">
 	  		.container {
@@ -32,15 +31,6 @@
 			  color: #fff;
 			  text-decoration: none;
 			}
-
-			.fa-file-download {
-			  color: rgb(163, 37, 31);
-			}
-
-			.recent {
-				font-size: 70px;
-			}
-
 	  	</style>
 	</head>
 	
@@ -68,56 +58,47 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<h4 class="mb-3">Current News</h4>
-					<!-- @if (session('recentHeadline')) -->
-					    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-					        {{ session('recentHeadline') }} <br>
-					        {{ session('recentParagraph_1') }} <br>
-					        {{ session('recentParagraph_2') }}
-					        <button type="button" class="close recent" aria-label="Close">
-								<span aria-hidden="true">{{ session('recentHeadlineID') }}</span>
-							</button>
-					    </div>
-					<!-- @endif -->
-
+					<h4 class="mb-3">Add News</h4>
 					@if (session('status'))
 					    <div class="alert alert-success alert-dismissible fade show" role="alert">
 					        {{ session('status') }}
-					        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-					    </div>
+						    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
 					@endif
-					 @if(Session::has('succses_message_for_Update'))    
-				            <p class="alert alert-success text-center">{{ Session::get('succses_message_for_Update') }}</p>
-				    @endif
 
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Description</th>
-								<th scope="col">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($NewsAstrons as $NewsAstron)
-								<tr>
-									<th scope="row" title="Click For Edit"><a href="{{url('/edit',$NewsAstron->id)}}">{{ $NewsAstron->id }} </a></th>
-									<td>
-										<code>Headline:</code><br>
-										{{ $NewsAstron->headline }} <br>
-										<code>paragraph:</code><br>
-										{{ $NewsAstron->paragraph_1 }} <br>
-										{{ $NewsAstron->paragraph_2 }} <br>
-									</td>
-									<td>
-										<a href="{{ url('/export', $NewsAstron->id) }}"><i class="fas fa-file-download fa-5x"></i></a>
-									</td>
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
+					
+					{{  Form::open( array('url' => route('newsastrons.update',$editNews->id), 'files'=>true,'method'=>'put') )  }}
+					
+					
+
+
+						<div class="mb-3">
+
+							<label for="headline">Headline</label>
+							<input type="text" class="form-control" name="headline" value="{{$editNews->headline}}" placeholder="Headline goes here ..." required="required" autofocus>
+
+						</div>
+
+						<div class="mb-3">
+
+							<label for="newsline1">News String 1</label>
+							<input type="text" class="form-control" name="paragraph_1" value="{{$editNews->paragraph_1}}" placeholder="News String goes here ..." required="required">
+
+						</div>
+
+						<div class="mb-3">
+
+							<label for="newsline2">News String 2</label>
+							<input type="text" class="form-control" name="paragraph_2" value="{{$editNews->paragraph_2}}" placeholder="News String goes here ..." required="required">
+
+						</div>
+
+						<button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
+					<!-- </form> -->
+
+					{{ Form::close() }}
 
 				</div>
 
@@ -125,7 +106,7 @@
 
 			<footer class="my-5 pt-5 text-muted text-center text-small">
 
-				<p class="mb-1">&copy; 2020- Ekattor Media Limited</p>
+				<p class="mb-1">&copy; 2017- Company Name</p>
 				
 				<ul class="list-inline">
 					<li class="list-inline-item"><a href="#">Privacy</a></li>

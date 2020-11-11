@@ -31,7 +31,10 @@ class NewsAstronController extends Controller
         // return $xml;
 
         //config
-        $namefile = "news.xml";
+        $ip = '192.168.0.93';
+        $host = gethostbyaddr($ip);
+        $path = '//'.$host.'/Users/Public/XML/';
+        $namefile = $path."Viz.xml";
         $content = $xml;
 
         //save file
@@ -106,9 +109,10 @@ class NewsAstronController extends Controller
      * @param  \App\Models\newsAstron  $newsAstron
      * @return \Illuminate\Http\Response
      */
-    public function edit(newsAstron $newsAstron)
+    public function edit(newsAstron $newsAstron,$id)
     {
-        return "Hello-2";
+        $editNews = NewsAstron::findorFail($id);
+        return view('edit',compact('editNews'));
     }
 
     /**
@@ -118,9 +122,22 @@ class NewsAstronController extends Controller
      * @param  \App\Models\newsAstron  $newsAstron
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, newsAstron $newsAstron)
+    public function update(Request $request, newsAstron $newsAstron,$id)
     {
-        //
+        
+        $headline           = $request->headline;
+        $paragraph_1        = $request->paragraph_1;
+        $paragraph_2        = $request->paragraph_2;
+        $find_newsAstron    = newsAstron::findOrFail($id);
+
+        $update_newsAstron  =   $find_newsAstron->update([
+            'headline'      =>  $headline,
+            'paragraph_1'   =>  $paragraph_1,
+            'paragraph_2'   =>  $paragraph_2,
+            ]);
+        
+        return redirect('/')->with('succses_message_for_Update', 'Successfully Updates!');
+
     }
 
     /**
