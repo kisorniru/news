@@ -49,7 +49,7 @@ class NewsAstronController extends Controller
             'recentParagraph_2' => $NewsAstron->paragraph_2,
         ]);
 
-        return back()->with('status', 'NEWS.XML file successfully updated.');
+        return back()->with('status', 'Viz.xml file successfully updated.');
     }
 
     /**

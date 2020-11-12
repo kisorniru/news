@@ -58,7 +58,7 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<h4 class="mb-3">Add News</h4>
+					<h4 class="mb-3">Edit News</h4>
 					@if (session('status'))
 					    <div class="alert alert-success alert-dismissible fade show" role="alert">
 					        {{ session('status') }}

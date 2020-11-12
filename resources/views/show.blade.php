@@ -88,9 +88,15 @@
 							</button>
 					    </div>
 					@endif
-					 @if(Session::has('succses_message_for_Update'))    
-				            <p class="alert alert-success text-center">{{ Session::get('succses_message_for_Update') }}</p>
-				    @endif
+
+					@if (session('succses_message_for_Update'))
+					    <div class="alert alert-success alert-dismissible fade show" role="alert">
+					        {{ session('succses_message_for_Update') }}
+					        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					    </div>
+					@endif
 
 					<table class="table table-hover">
 						<thead>
@@ -112,7 +118,9 @@
 										{{ $NewsAstron->paragraph_2 }} <br>
 									</td>
 									<td>
-										<a href="{{ url('/export', $NewsAstron->id) }}"><i class="fas fa-file-download fa-5x"></i></a>
+										@if ($loop->first)
+											<a href="{{ url('/export', $NewsAstron->id) }}"><i class="fas fa-file-download fa-5x"></i></a>
+										@endif
 									</td>
 								</tr>
 							@endforeach
