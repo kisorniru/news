@@ -32,13 +32,8 @@ class Kernel extends ConsoleKernel
 
             DB::table('news_astrons')->delete();
 
-        })->everyFiveMinutes();
-
-        $schedule->call(function () {
-            
-            Request::session()->flush();
-
-        })->everyFiveMinutes();
+        // })->everyFiveMinutes();
+        })->daily();
     }
 
     /**

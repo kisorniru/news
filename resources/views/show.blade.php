@@ -109,7 +109,9 @@
 						<tbody>
 							@foreach ($NewsAstrons as $NewsAstron)
 								<tr>
-									<th scope="row" title="Click For Edit"><a href="{{url('/edit',$NewsAstron->id)}}">{{ $NewsAstron->id }} </a></th>
+									<th scope="row">
+										<a href="{{url('/edit',$NewsAstron->id)}}" title="Click For Edit"><i class="fas fa-edit"></i> {{ $NewsAstron->id }} </a>
+									</th>
 									<td>
 										<code>Headline:</code><br>
 										{{ $NewsAstron->headline }} <br>
@@ -119,7 +121,7 @@
 									</td>
 									<td>
 										@if ($loop->first)
-											<a href="{{ url('/export', $NewsAstron->id) }}"><i class="fas fa-file-download fa-5x"></i></a>
+											<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export"><i class="fas fa-file-download fa-5x"></i></a>
 										@endif
 									</td>
 								</tr>

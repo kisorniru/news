@@ -35,8 +35,8 @@ class NewsAstronController extends Controller
         $ip = '192.168.0.115';
         $host = gethostbyaddr($ip);
         // $path = '//'.$host.'/Users/Public/XML/';
-        // $path = '//192.168.0.93/Users/Public/XML/';
-        $path = 'smb://192.168.0.115/NCA_Common/siddique/xml/';
+        $path = '//192.168.0.93/Users/Public/XML/';
+        // $path = '//192.168.0.115/NCA_Common/siddique/xml/';
         $namefile = $path."Viz.xml";
         $content = $xml;
 
