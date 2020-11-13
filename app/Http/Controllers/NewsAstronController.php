@@ -92,7 +92,9 @@ class NewsAstronController extends Controller
         $NewsAstron->paragraph_2 = $request->paragraph_2;
         $NewsAstron->save();
 
-        return back()->with('status', 'Successfully added!');
+        // return $NewsAstron;
+
+        return back()->with(['status' => 'Successfully added!', 'dataId' => $NewsAstron->id]);
     }
 
     /**
