@@ -110,7 +110,7 @@
 							@foreach ($NewsAstrons as $NewsAstron)
 								<tr>
 									<th scope="row">
-										<a href="{{url('/edit',$NewsAstron->id)}}" title="Click For Edit"><i class="fas fa-edit"></i> {{ $NewsAstron->id }} </a>
+										<a href="{{url('/edit',$NewsAstron->id)}}" title="Click For Edit" style="text-decoration: none;"><i class="fas fa-edit"></i> {{ $NewsAstron->id }} </a>
 									</th>
 									<td>
 										<code>Headline:</code><br>

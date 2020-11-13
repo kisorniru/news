@@ -21,11 +21,11 @@ class NewsAstronFactory extends Factory
      */
     public function definition()
     {
-        // return [
-        //     'headline'    => 'ভোট চলছে, কেন্দ্রে ভিড় কম',
-        //     'paragraph_1' => $this->faker->paragraph($nbSentences = 1, $variableNbSentences = true),
-        //     'paragraph_2' => $this->faker->paragraph($nbSentences = 1, $variableNbSentences = true),
-        //     'isExported' => 0,
-        // ];
+        return [
+            'headline'    => 'ভোট চলছে, কেন্দ্রে ভিড় কম',
+            'paragraph_1' => $this->faker->paragraph($nbSentences = 1, $variableNbSentences = true),
+            'paragraph_2' => $this->faker->paragraph($nbSentences = 1, $variableNbSentences = true),
+            'isExported' => 0,
+        ];
     }
 }
