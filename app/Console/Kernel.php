@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
 
-            DB::table('news_astrons')->delete();
-            DB::table('numbers_onlies')->delete();
+            DB::table('news_astrons')->truncate();
+            DB::table('numbers_onlies')->truncate();
 
         })->everyFiveMinutes();
         // })->daily();
