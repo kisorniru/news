@@ -55,14 +55,6 @@ class NewsAstronController extends Controller
         return back()->with('status', 'Viz.xml file successfully updated.');
     }
 
-    public function numbersOnly()
-    {
-        $NewsAstron = NewsAstron::where('isExported', 0)
-                        ->whereDate('created_at', Carbon::today())
-                        ->first();
-        return view('numbersOnly')->with('NewsAstron', $NewsAstron);
-    }
-
     /**
      * Display a listing of the resource.
      *

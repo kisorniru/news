@@ -78,32 +78,22 @@
 					    </div>
 					<!-- @endif -->
 
-					@if ($NewsAstron)
-
-						<table class="table table-borderless">
-							<tbody>
-								<tr>
-									<td>
-										<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="btn @if ($NewsAstron->id != 1) disabled @endif">
-											<i class="fas fa-hourglass-start fa-5x"></i>
-										</a>
-									</td>
-									<td>
-										<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="float-right">
-											<i class="far fa-plus-square fa-5x"></i>
-										</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-
-					@else
-
-						<div class="alert alert-danger alert-dismissible fade show recent text-center" role="alert">
-					        Nothing to export! Please add first.
-					    </div>
-
-					@endif
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<td>
+									<a href="{{ url('/exportNumbersOnly') }}" title="Click For Export" class="btn @isset($numbersOnly) @if ( $numbersOnly->id != 1) disabled @endif @endisset">
+										<i class="fas fa-hourglass-start fa-5x"></i>
+									</a>
+								</td>
+								<td>
+									<a href="{{ url('/exportNumbersOnly') }}" title="Click For Export" class="float-right">
+										<i class="far fa-plus-square fa-5x"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
 				</div>
 

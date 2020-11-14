@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsAstronController;
+use App\Http\Controllers\NumbersOnlyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,6 @@ use App\Http\Controllers\NewsAstronController;
 
 Route::get('/export/{id}',  [NewsAstronController::class, 'export']);
 Route::get('/edit/{id}',    [NewsAstronController::class, 'edit']);
-Route::get('/numbersOnly',  [NewsAstronController::class, 'numbersOnly']);
 
 Route::resource('/', NewsAstronController::class)
 		->names([
@@ -31,5 +31,5 @@ Route::resource('/', NewsAstronController::class)
 
 Route::resource('newsastrons', NewsAstronController::class);
 
-
-
+Route::resource('numbersOnly', 		NumbersOnlyController::class);
+Route::get('/exportNumbersOnly',    [NumbersOnlyController::class, 'exportNumbersOnly']);
