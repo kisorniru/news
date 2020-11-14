@@ -69,7 +69,7 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<h4 class="mb-3">Current News</h4>
+					<h4 class="mb-3">Start Exporting</h4>
 					<!-- @if (session('recentHeadline')) -->
 					    <div class="alert alert-danger alert-dismissible fade show" role="alert">
 					        {{ session('recentHeadline') }} <br>
@@ -90,13 +90,7 @@
 					    </div>
 					@endif
 
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Start</th>
-								<th scope="col">Plus</th>
-							</tr>
-						</thead>
+					<table class="table table-borderless">
 						<tbody>
 							<tr>
 								<td>
@@ -105,7 +99,7 @@
 									</a>
 								</td>
 								<td>
-									<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export">
+									<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="float-right">
 										<i class="far fa-plus-square fa-5x"></i>
 									</a>
 								</td>
