@@ -99,15 +99,9 @@
 
 					@else
 
-						<table class="table table-borderless">
-							<tbody>
-								<tr>
-									<td>
-										<h3> Nothing to export! Please add first.</h3>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="alert alert-danger alert-dismissible fade show recent text-center" role="alert">
+					        Nothing to export! Please add first.
+					    </div>
 
 					@endif
 
