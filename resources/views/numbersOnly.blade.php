@@ -69,9 +69,6 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					@if ($NewsAstron->id != 1)
-						<h4 class="mb-3">Start Exporting</h4>
-					@endif
 					<!-- @if (session('recentHeadline')) -->
 					    <div class="alert alert-danger alert-dismissible fade show recent text-center" role="alert">
 					        Current # {{ session('recentHeadlineID') }}
@@ -95,6 +92,18 @@
 										<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="float-right">
 											<i class="far fa-plus-square fa-5x"></i>
 										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					@else
+
+						<table class="table table-borderless">
+							<tbody>
+								<tr>
+									<td>
+										<h3> Nothing to export! Please add first.</h3>
 									</td>
 								</tr>
 							</tbody>
