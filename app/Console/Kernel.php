@@ -33,8 +33,8 @@ class Kernel extends ConsoleKernel
             DB::table('news_astrons')->delete();
             DB::table('numbers_onlies')->delete();
 
-        // })->daily();
         })->everyFiveMinutes();
+        // })->daily();
     }
 
     /**
