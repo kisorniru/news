@@ -33,8 +33,8 @@ class Kernel extends ConsoleKernel
             DB::table('news_astrons')->truncate();
             DB::table('numbers_onlies')->truncate();
 
-        })->everyFiveMinutes();
-        // })->daily();
+        // })->everyFiveMinutes();
+        })->daily();
     }
 
     /**
