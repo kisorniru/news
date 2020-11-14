@@ -23,8 +23,8 @@ class NewsAstronFactory extends Factory
     {
         return [
             'headline'    => 'ভোট চলছে, কেন্দ্রে ভিড় কম',
-            'paragraph_1' => $this->faker->paragraph($nbSentences = 1, $variableNbSentences = true),
-            'paragraph_2' => $this->faker->paragraph($nbSentences = 1, $variableNbSentences = true),
+            'paragraph_1' => $this->faker->realText(mt_rand(20, 70)),
+            'paragraph_2' => $this->faker->realText(mt_rand(20, 70)),
             'isExported' => 0,
         ];
     }
