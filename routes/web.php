@@ -15,9 +15,8 @@ use App\Http\Controllers\NewsAstronController;
 */
 
 Route::get('/export/{id}',  [NewsAstronController::class, 'export']);
-Route::get('/edit/{id}',  [NewsAstronController::class, 'edit']);
-
-
+Route::get('/edit/{id}',    [NewsAstronController::class, 'edit']);
+Route::get('/numbersOnly',  [NewsAstronController::class, 'numbersOnly']);
 
 Route::resource('/', NewsAstronController::class)
 		->names([
@@ -29,7 +28,8 @@ Route::resource('/', NewsAstronController::class)
 		    'update' 	=> 'newsastrons.update',
 		    'destroy' 	=> 'newsastrons.destroy'
 		]);
-Route::resource('newsastrons', NewsAstronController::class);
+
+// Route::resource('newsastrons', NewsAstronController::class);
 
 
 

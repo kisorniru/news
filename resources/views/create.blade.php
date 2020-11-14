@@ -8,6 +8,7 @@
 	  	<meta charset="utf-8">
 	  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 
 	  	<style type="text/css">
 	  		.container {
@@ -31,6 +32,13 @@
 			  color: #fff;
 			  text-decoration: none;
 			}
+			.maxInfo {
+				line-height: 0.5;
+			}
+			.maxInfo span{
+				font-size: 14px;
+				color: #55585a;
+			}
 	  	</style>
 	</head>
 	
@@ -41,8 +49,9 @@
 	        <a class="py-2" href="#">
 	          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
 	        </a>
-	        <a class="py-2" href="{{ url('/create') }}">ADD</a>
-	        <a class="py-2" href="{{ url('/') }}">LIST</a>
+	        <a class="py-2" href="{{ route('newsastrons.create') }}">Add</a>
+	        <a class="py-2" href="{{ url('/numbersOnly') }}">Number Only</a>
+	        <a class="py-2" href="{{ route('newsastrons.index') }}">List</a>
 	      </div>
 	    </nav>
 
@@ -58,7 +67,13 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<h4 class="mb-3">Add News</h4>
+					<div class="mb-3 maxInfo">
+						<h4>{{ $id }} : Add News</h4>
+						<span>
+							<i class="fas fa-info-circle"></i> maximum character length 70
+						</span>
+					</div>
+
 					@if (session('status'))
 					    <div class="alert alert-success alert-dismissible fade show" role="alert">
 					        {{ session('dataId') }}# {{ session('status') }}
@@ -73,21 +88,21 @@
 						<div class="mb-3">
 
 							<label for="headline">Headline</label>
-							<input type="text" class="form-control" name="headline" placeholder="Headline goes here ..." required="required" autofocus>
+							<input type="text" class="form-control" name="headline" placeholder="Headline goes here ..." required="required" maxlength="70" autofocus>
 
 						</div>
 
 						<div class="mb-3">
 
 							<label for="newsline1">News String 1</label>
-							<input type="text" class="form-control" name="paragraph_1" placeholder="News String goes here ..." required="required">
+							<input type="text" class="form-control" name="paragraph_1" placeholder="News String goes here ..." required="required" maxlength="70">
 
 						</div>
 
 						<div class="mb-3">
 
 							<label for="newsline2">News String 2</label>
-							<input type="text" class="form-control" name="paragraph_2" placeholder="News String goes here ..." required="required">
+							<input type="text" class="form-control" name="paragraph_2" placeholder="News String goes here ..." required="required" maxlength="70">
 
 						</div>
 

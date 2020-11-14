@@ -55,6 +55,14 @@ class NewsAstronController extends Controller
         return back()->with('status', 'Viz.xml file successfully updated.');
     }
 
+    public function numbersOnly()
+    {
+        $NewsAstron = NewsAstron::where('isExported', 0)
+                        ->whereDate('created_at', Carbon::today())
+                        ->first();
+        return view('numbersOnly')->with('NewsAstron', $NewsAstron);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -75,7 +83,14 @@ class NewsAstronController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $NewsAstrons = NewsAstron::latest()->first();
+        if ($NewsAstrons) {
+            $id = $NewsAstrons->id + 1;
+        } else {
+            $id = 1;
+        }
+
+        return view('create')->with('id', $id);
     }
 
     /**
@@ -114,7 +129,7 @@ class NewsAstronController extends Controller
      * @param  \App\Models\newsAstron  $newsAstron
      * @return \Illuminate\Http\Response
      */
-    public function edit(newsAstron $newsAstron,$id)
+    public function edit(newsAstron $newsAstron, $id)
     {
         $editNews = NewsAstron::findorFail($id);
         return view('edit',compact('editNews'));
