@@ -71,41 +71,34 @@
 					
 					<h4 class="mb-3">Start Exporting</h4>
 					<!-- @if (session('recentHeadline')) -->
-					    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-					        {{ session('recentHeadline') }} <br>
-					        {{ session('recentParagraph_1') }} <br>
-					        {{ session('recentParagraph_2') }}
-					        <button type="button" class="close recent" aria-label="Close">
-								<span aria-hidden="true">{{ session('recentHeadlineID') }}</span>
+					    <div class="alert alert-danger alert-dismissible fade show recent" role="alert">
+					        Current # {{ session('recentHeadlineID') }}
+					        <button type="button" class="close" aria-label="Close">
+								<span aria-hidden="true"></span>
 							</button>
 					    </div>
 					<!-- @endif -->
 
-					@if (session('status'))
-					    <div class="alert alert-success alert-dismissible fade show" role="alert">
-					        {{ session('status') }}
-					        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-					    </div>
-					@endif
+					@if ($NewsAstron)
 
-					<table class="table table-borderless">
-						<tbody>
-							<tr>
-								<td>
-									<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="btn @if ($NewsAstron->id != 1) disabled @endif">
-										<i class="fas fa-hourglass-start fa-5x"></i>
-									</a>
-								</td>
-								<td>
-									<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="float-right">
-										<i class="far fa-plus-square fa-5x"></i>
-									</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+						<table class="table table-borderless">
+							<tbody>
+								<tr>
+									<td>
+										<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="btn @if ($NewsAstron->id != 1) disabled @endif">
+											<i class="fas fa-hourglass-start fa-5x"></i>
+										</a>
+									</td>
+									<td>
+										<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="float-right">
+											<i class="far fa-plus-square fa-5x"></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					@endif
 
 				</div>
 
