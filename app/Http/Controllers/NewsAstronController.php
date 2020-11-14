@@ -28,15 +28,9 @@ class NewsAstronController extends Controller
 
         $formatter = Formatter::make($NewsAstron, Formatter::JSON);
         $xml   = $formatter->toXml();
-        // return $xml;
 
         //config
-        // $ip = '192.168.0.93';
-        $ip = '192.168.0.115';
-        $host = gethostbyaddr($ip);
-        // $path = '//'.$host.'/Users/Public/XML/';
         $path = '//192.168.0.93/Users/Public/XML/';
-        // $path = '//192.168.0.115/NCA_Common/siddique/xml/';
         $namefile = $path."Viz.xml";
         $content = $xml;
 

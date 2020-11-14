@@ -26,7 +26,13 @@ class NumbersOnlyController extends Controller
     {
         $numbersOnly = NumbersOnly::whereDate('created_at', Carbon::today())
                         ->first();
-        return view('numbersOnly')->with('numbersOnly', $numbersOnly);
+        if ($numbersOnly) {
+            $id = $numbersOnly->id;
+        } else {
+            $id = 0;
+        }
+        // return $numbersOnly;
+        return view('numbersOnly')->with('numbersOnlyId', $id);
     }
 
     public function exportNumbersOnly()
@@ -48,7 +54,7 @@ class NumbersOnlyController extends Controller
         fclose($file);
 
         session([
-            'recentHeadlineID'  => $NewsAstron->id,
+            'recentHeadlineID'  => $NumbersOnly->id,
         ]);
 
         return back();

@@ -82,7 +82,13 @@
 						<tbody>
 							<tr>
 								<td>
-									<a href="{{ url('/exportNumbersOnly') }}" title="Click For Export" class="btn @isset($numbersOnly) @if ( $numbersOnly->id != 1) disabled @endif @endisset">
+									<a href="{{ url('/exportNumbersOnly') }}" title="Click For Export" @isset($numbersOnlyId)
+										@if ( $numbersOnlyId == 1)
+											class="btn disabled"
+										@else
+											class="btn"
+										@endif
+									@endisset>
 										<i class="fas fa-hourglass-start fa-5x"></i>
 									</a>
 								</td>

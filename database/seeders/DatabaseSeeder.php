@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         NewsAstron::factory()->count(5)->create();
-        NumbersOnly::factory()->count(5)->create();
+        // NumbersOnly::factory()->count(5)->create();
         // $this->call([
 	        // NewsAstronSeeder::class,
 	    // ]);
