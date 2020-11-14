@@ -100,7 +100,7 @@
 						<tbody>
 							<tr>
 								<td>
-									<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="btn @if ($NewsAstron->id == 1) disabled @endif">
+									<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export" class="btn @if ($NewsAstron->id != 1) disabled @endif">
 										<i class="fas fa-hourglass-start fa-5x"></i>
 									</a>
 								</td>
