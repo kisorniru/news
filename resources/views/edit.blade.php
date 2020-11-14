@@ -78,21 +78,21 @@
 						<div class="mb-3">
 
 							<label for="headline">Headline</label>
-							<input type="text" class="form-control" name="headline" value="{{$editNews->headline}}" placeholder="Headline goes here ..." required="required" autofocus>
+							<input type="text" class="form-control" name="headline" value="{{$editNews->headline}}" placeholder="Headline goes here ..." required="required" maxlength="70" autofocus>
 
 						</div>
 
 						<div class="mb-3">
 
 							<label for="newsline1">News String 1</label>
-							<input type="text" class="form-control" name="paragraph_1" value="{{$editNews->paragraph_1}}" placeholder="News String goes here ..." required="required">
+							<input type="text" class="form-control" name="paragraph_1" value="{{$editNews->paragraph_1}}" placeholder="News String goes here ..." maxlength="70" required="required">
 
 						</div>
 
 						<div class="mb-3">
 
 							<label for="newsline2">News String 2</label>
-							<input type="text" class="form-control" name="paragraph_2" value="{{$editNews->paragraph_2}}" placeholder="News String goes here ..." required="required">
+							<input type="text" class="form-control" name="paragraph_2" value="{{$editNews->paragraph_2}}" placeholder="News String goes here ..." maxlength="70" required="required">
 
 						</div>
 

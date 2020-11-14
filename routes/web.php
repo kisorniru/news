@@ -29,7 +29,7 @@ Route::resource('/', NewsAstronController::class)
 		    'destroy' 	=> 'newsastrons.destroy'
 		]);
 
-// Route::resource('newsastrons', NewsAstronController::class);
+Route::resource('newsastrons', NewsAstronController::class);
 
 
 
