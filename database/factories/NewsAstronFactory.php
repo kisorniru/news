@@ -22,7 +22,7 @@ class NewsAstronFactory extends Factory
     public function definition()
     {
         return [
-            'headline'    => 'ভোট চলছে, কেন্দ্রে ভিড় কম',
+            'headline'    => $this->faker->word().' - ভোট চলছে, কেন্দ্রে ভিড় কম',
             'paragraph_1' => $this->faker->realText(mt_rand(20, 70)),
             'paragraph_2' => $this->faker->realText(mt_rand(20, 70)),
             'isExported' => 0,
