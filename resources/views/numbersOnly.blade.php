@@ -69,14 +69,14 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<!-- @if (session('recentHeadline')) -->
+					@if (session('recentHeadlineID'))
 					    <div class="alert alert-danger alert-dismissible fade show recent text-center" role="alert">
 					        Current # {{ session('recentHeadlineID') }}
 					        <button type="button" class="close" aria-label="Close">
 								<span aria-hidden="true"></span>
 							</button>
 					    </div>
-					<!-- @endif -->
+					@endif
 
 					<table class="table table-borderless">
 						<tbody>

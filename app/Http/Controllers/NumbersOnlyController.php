@@ -57,7 +57,7 @@ class NumbersOnlyController extends Controller
             'recentHeadlineID'  => $NumbersOnly->id,
         ]);
 
-        return back();
+        return back()->with('status', 'Viz.xml file successfully updated.');
     }
 
     /**
