@@ -69,9 +69,11 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<h4 class="mb-3">Start Exporting</h4>
+					@if ($NewsAstron->id != 1)
+						<h4 class="mb-3">Start Exporting</h4>
+					@endif
 					<!-- @if (session('recentHeadline')) -->
-					    <div class="alert alert-danger alert-dismissible fade show recent" role="alert">
+					    <div class="alert alert-danger alert-dismissible fade show recent text-center" role="alert">
 					        Current # {{ session('recentHeadlineID') }}
 					        <button type="button" class="close" aria-label="Close">
 								<span aria-hidden="true"></span>
