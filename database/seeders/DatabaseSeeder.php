@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\NewsAstron;
 use App\Models\NumbersOnly;
+use App\Models\HuaweiCloud;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         NewsAstron::factory()->count(5)->create();
         NumbersOnly::factory()->count(5)->create();
+        HuaweiCloud::factory()->count(25)->create();
         // $this->call([
 	        // NewsAstronSeeder::class,
 	    // ]);
