@@ -15,6 +15,7 @@ class CreateHuaweiCloudsTable extends Migration
     {
         Schema::create('huawei_clouds', function (Blueprint $table) {
             $table->id();
+            $table->string('code', 100);
             $table->string('name', 1000);
             $table->timestamps();
         });

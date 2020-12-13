@@ -39,13 +39,28 @@ class HuaweiCloudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $last = HuaweiCloud::latest('id')->first();
+        if ($last) {
+        	$idCode = $last->id + 1;
+        } else {
+        	$idCode = 1;
+        }
+        $idCode = str_pad($idCode, 8, '0', STR_PAD_LEFT);
+
+        $huaweiCloud = new HuaweiCloud;
+        $huaweiCloud->code = "CH".$idCode."_";
+        $huaweiCloud->name = str_replace(" ","_",$request->name);
+        $huaweiCloud->save();
+
+        // return $NewsAstron;
+
+        return back()->with(['status' => 'Successfully added!']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\HuaweiCloud  $HuaweiCloud
+     * @param  \App\Models\HuaweiCloud  $huaweiCloud
      * @return \Illuminate\Http\Response
      */
     public function show(huaweiCloud $huaweiCloud)
@@ -65,8 +80,7 @@ class HuaweiCloudController extends Controller
 
         $editHuaweiClouds = HuaweiCloud::findorFail($id);
         
-        return view('huaweiCloud')->with('huaweiClouds', $huaweiClouds);
-        return view('huaweiCloud',compact('editHuaweiClouds'));
+        return view('huaweiCloudEdit')->with(['huaweiClouds' => $huaweiClouds, 'editHuaweiClouds' => $editHuaweiClouds]);
 
     }
 
@@ -77,9 +91,16 @@ class HuaweiCloudController extends Controller
      * @param  \App\Models\HuaweiCloud  $huaweiCloud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, huaweiCloud $huaweiCloud)
+    public function update(Request $request, $id)
     {
-        //
+        $huaweiCloud    	= HuaweiCloud::findOrFail($id);
+        $name           	= str_replace(" ","_",$request->name);
+
+        $update_huaweiCloud  =   $huaweiCloud->update([
+            'name'      =>  $name,
+            ]);
+        
+        return redirect('/huaweiCloud')->with(['status' => 'Successfully Updates!']);
     }
 
     /**

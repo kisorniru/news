@@ -10,28 +10,37 @@
 	  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 	  	<style type="text/css">
-	  		.container {
-			  max-width: 960px;
-			}
 
-			/*
-			 * Custom translucent site header
-			 */
+	  		.container {
+
+			  	max-width: 960px;
+
+			}
 
 			.site-header {
-			  background-color: rgba(0, 0, 0, .85);
-			  -webkit-backdrop-filter: saturate(180%) blur(20px);
-			  backdrop-filter: saturate(180%) blur(20px);
+
+			  	background-color: rgba(0, 0, 0, .85);
+			  	-webkit-backdrop-filter: saturate(180%) blur(20px);
+			  	backdrop-filter: saturate(180%) blur(20px);
+
 			}
+
 			.site-header a {
-			  color: #999;
-			  transition: ease-in-out color .15s;
+
+			  	color: #999;
+			  	transition: ease-in-out color .15s;
+
 			}
+
 			.site-header a:hover {
-			  color: #fff;
-			  text-decoration: none;
+
+			  	color: #fff;
+			  	text-decoration: none;
+
 			}
+
 	  	</style>
+	  	
 	</head>
 	
 	<body>

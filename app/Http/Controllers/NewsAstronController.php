@@ -128,7 +128,7 @@ class NewsAstronController extends Controller
      * @param  \App\Models\newsAstron  $newsAstron
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, newsAstron $newsAstron,$id)
+    public function update(Request $request, newsAstron $newsAstron ,$id)
     {
         
         $headline           = $request->headline;

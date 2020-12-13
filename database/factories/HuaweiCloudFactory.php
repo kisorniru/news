@@ -22,6 +22,7 @@ class HuaweiCloudFactory extends Factory
     public function definition()
     {
         return [
+            'code' => 'CH_',
             'name' => $this->faker->realText(mt_rand(10, 20)),
         ];
     }

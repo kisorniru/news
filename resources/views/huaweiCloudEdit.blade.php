@@ -69,6 +69,7 @@
 
 			</div>
 
+
 			@if (session('status'))
 			    <div class="alert alert-success alert-dismissible fade show" role="alert">
 			        # {{ session('status') }}
@@ -78,14 +79,14 @@
 				</div>
 			@endif
 
-			{{  Form::open( array('url' => route('huaweiCloud.store'), 'files'=>true,'method'=>'post') )  }}
+			{{  Form::open( array('url' => route('huaweiCloud.update',$editHuaweiClouds->id), 'files'=>true,'method'=>'put') )  }}
 				<div class="row">
 					<div class="col-10">
 					  	<label for="name" class="sr-only">Name</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="name" autofocus>
+						<input type="text" class="form-control" id="name" placeholder="name" name="name" value="{{ $editHuaweiClouds->name }}">
 					</div>
 					<div class="col-2">
-					  	<button type="submit" class="btn btn-primary mb-2 float-right">Save</button>
+					  	<button type="submit" class="btn btn-primary mb-2 float-right">Update</button>
 					</div>
 				</div>
 			{{ Form::close() }}
@@ -153,7 +154,7 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
 
 		<script>
-
+			
 			$(document).ready(function() {
 			    $('#example').DataTable({
 			    	"order": [[0, 'desc']]
@@ -173,7 +174,7 @@
 			function copyText(text) {
 			  	navigator.clipboard.writeText(text);
 			}
-
+			
 		</script>
 
 	</body>
