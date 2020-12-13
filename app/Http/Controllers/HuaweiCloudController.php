@@ -39,6 +39,10 @@ class HuaweiCloudController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->name == null) {
+            return back()->with(['status' => 'Please input properly!']);
+        }
+
         $last = HuaweiCloud::latest('id')->first();
         if ($last) {
         	$idCode = $last->id + 1;

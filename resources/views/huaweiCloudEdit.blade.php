@@ -83,7 +83,7 @@
 				<div class="row">
 					<div class="col-10">
 					  	<label for="name" class="sr-only">Name</label>
-						<input type="text" class="form-control" id="name" placeholder="name" name="name" value="{{ $editHuaweiClouds->name }}">
+						<input type="text" class="form-control" id="name" placeholder="name" name="name" value="{{ $editHuaweiClouds->name }}" autofocus required="required">
 					</div>
 					<div class="col-2">
 					  	<button type="submit" class="btn btn-primary mb-2 float-right">Update</button>
