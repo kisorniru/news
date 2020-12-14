@@ -44,6 +44,11 @@
 			    color: #a27373;
 			}
 
+			i.fas.fa-info-circle {
+			    padding-left: 20px;
+			    color: #000000;
+			}
+
 	  	</style>
 
 	</head>
@@ -80,15 +85,20 @@
 			@endif
 
 			{{  Form::open( array('url' => route('huaweiCloud.update',$editHuaweiClouds->id), 'files'=>true,'method'=>'put') )  }}
-				<div class="row">
-					<div class="col-10">
-					  	<label for="name" class="sr-only">Name</label>
-						<input type="text" class="form-control" id="name" placeholder="name" name="name" value="{{ $editHuaweiClouds->name }}" autofocus required="required">
-					</div>
-					<div class="col-2">
-					  	<button type="submit" class="btn btn-primary mb-2 float-right">Update</button>
-					</div>
+
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Package Name</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="Package Name" value="{{ $editHuaweiClouds->name }}" autofocus required="required">
 				</div>
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">Package Details<sup>*</sup></label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="details">{{ $editHuaweiClouds->details }}</textarea>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary mb-2 float-right">Update</button>
+				</div>
+				<br>
+				<br>
 			{{ Form::close() }}
 			
 			<div class="row">
@@ -111,12 +121,20 @@
 				            @foreach ($huaweiClouds as $huaweiCloud)
 					            <tr>
 					                <td>{{ $huaweiCloud->id }}</td>
-					                <td id='{{ $huaweiCloud->id }}'>{{ $huaweiCloud->code }}{{ $huaweiCloud->name }}</td>
+					                <td>
+					                	<span id='{{ $huaweiCloud->id }}'>
+					                		{{ $huaweiCloud->code }}{{ $huaweiCloud->name }}
+					                	</span>
+					                	<span class="d-none">{{ $huaweiCloud->details }}</span>
+					                </td>
 					                <td>
 					                	<a href="{{url('/huaweiCloud/edit', $huaweiCloud->id)}}" title="Click For Edit" style="text-decoration: none;">
 					                		<i class="fas fa-edit"></i>
 					                	</a>
 					                	<i class="far fa-copy" data-toggle="tooltip" data-placement="top" title="Copy to clipboard" onclick="copyFunction('{{ $huaweiCloud->id }}')"></i>
+					                	<a href="{{url('/huaweiCloud', $huaweiCloud->id)}}" title="Click For Details" style="text-decoration: none;">
+					                		<i class="fas fa-info-circle"></i>
+					                	</a>
 					                </td>
 					            </tr>
 				            @endforeach

@@ -49,6 +49,16 @@
 			    color: #000000;
 			}
 
+			#name, #details {
+				padding-left: 20px;
+    			color: #5a4e4e;
+			}
+
+			.labelFont label {
+			    font-size: 20px;
+			    font-weight: 500px;
+			}
+
 	  	</style>
 
 	</head>
@@ -85,18 +95,15 @@
 
 			{{  Form::open( array('url' => route('huaweiCloud.store'), 'files'=>true,'method'=>'post') )  }}
 
-				<div class="form-group">
-					<label for="exampleFormControlInput1">Package Name</label>
-					<input type="text" class="form-control" id="name" name="name" placeholder="Package Name" autofocus required="required">
+				<div class="form-group labelFont">
+					<label for="name">Package Name:</label>
+					<p id="name" name="name">{{ $editHuaweiClouds->name }}</p>
 				</div>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Package Details<sup>*</sup></label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="details"></textarea>
+				<div class="form-group labelFont">
+					<label for="details">Package Details:</label>
+					<p id="details" name="details">{{ $editHuaweiClouds->details }}</p>
 				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary mb-2 float-right">Save</button>
-				</div>
-				<br>
+
 				<br>
 			{{ Form::close() }}
 			

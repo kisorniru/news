@@ -52,8 +52,9 @@ class HuaweiCloudController extends Controller
         $idCode = str_pad($idCode, 8, '0', STR_PAD_LEFT);
 
         $huaweiCloud = new HuaweiCloud;
-        $huaweiCloud->code = "CH".$idCode."_";
-        $huaweiCloud->name = str_replace(" ","_",$request->name);
+        $huaweiCloud->code      = "CH".$idCode."_";
+        $huaweiCloud->name      = str_replace(" ","_",$request->name);
+        $huaweiCloud->details   = $request->details;
         $huaweiCloud->save();
 
         // return $NewsAstron;
@@ -67,9 +68,13 @@ class HuaweiCloudController extends Controller
      * @param  \App\Models\HuaweiCloud  $huaweiCloud
      * @return \Illuminate\Http\Response
      */
-    public function show(huaweiCloud $huaweiCloud)
+    public function show($id)
     {
-        //
+        $huaweiClouds = HuaweiCloud::get();
+
+        $editHuaweiClouds = HuaweiCloud::findorFail($id);
+        
+        return view('huaweiCloudShow')->with(['huaweiClouds' => $huaweiClouds, 'editHuaweiClouds' => $editHuaweiClouds]);
     }
 
     /**
@@ -99,6 +104,7 @@ class HuaweiCloudController extends Controller
     {
         $huaweiCloud    	= HuaweiCloud::findOrFail($id);
         $name           	= str_replace(" ","_",$request->name);
+        $details            = $request->details;
 
         $update_huaweiCloud  =   $huaweiCloud->update([
             'name'      =>  $name,

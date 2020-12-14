@@ -17,6 +17,7 @@ class CreateHuaweiCloudsTable extends Migration
             $table->id();
             $table->string('code', 100);
             $table->string('name', 1000);
+            $table->string('details', 1500);
             $table->timestamps();
         });
     }
