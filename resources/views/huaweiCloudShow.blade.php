@@ -97,7 +97,7 @@
 
 				<div class="form-group labelFont">
 					<label for="name">Package Name:</label>
-					<p id="name" name="name">{{ $editHuaweiClouds->name }}</p>
+					<p id="name" name="name">{{ $editHuaweiClouds->code }}{{ $editHuaweiClouds->name }}</p>
 				</div>
 				<div class="form-group labelFont">
 					<label for="details">Package Details:</label>
