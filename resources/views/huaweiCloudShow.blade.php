@@ -73,6 +73,7 @@
 	        <a class="py-2" href="{{ route('newsastrons.create') }}">Add</a>
 	        <a class="py-2" href="{{ url('/numbersOnly') }}">Number Only</a>
 	        <a class="py-2" href="{{ route('newsastrons.index') }}">List</a>
+	        <a class="py-2" href="{{ url('/huaweiCloud') }}">Huawei Cloud</a>
 	      </div>
 	    </nav>
 
