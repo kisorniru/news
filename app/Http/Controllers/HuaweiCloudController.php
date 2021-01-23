@@ -106,8 +106,10 @@ class HuaweiCloudController extends Controller
         $name           	= str_replace(" ","_",$request->name);
         $details            = $request->details;
 
+
         $update_huaweiCloud  =   $huaweiCloud->update([
             'name'      =>  $name,
+            'details'   =>  $details,
             ]);
         
         return redirect('/huaweiCloud')->with(['status' => 'Successfully Updates!']);
