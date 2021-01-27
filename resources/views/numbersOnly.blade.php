@@ -32,13 +32,15 @@
 			  color: #fff;
 			  text-decoration: none;
 			}
-			.maxInfo {
-				line-height: 0.5;
+
+			.fa-file-download, .fa-hourglass-start, .fa-plus-square{
+			  color: rgb(163, 37, 31);
 			}
-			.maxInfo span{
-				font-size: 14px;
-				color: #55585a;
+
+			.recent {
+				font-size: 70px;
 			}
+
 	  	</style>
 	</head>
 	
@@ -68,48 +70,37 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<div class="mb-3 maxInfo">
-						<h4>{{ $id }} : Add News</h4>
-						<span>
-							<i class="fas fa-info-circle"></i> maximum character length 70
-						</span>
-					</div>
-
-					@if (session('status'))
-					    <div class="alert alert-success alert-dismissible fade show" role="alert">
-					        {{ session('dataId') }}# {{ session('status') }}
-						    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-						</div>
+					@if (session('recentHeadlineID'))
+					    <div class="alert alert-danger alert-dismissible fade show recent text-center" role="alert">
+					        Current # {{ session('recentHeadlineID') }}
+					        <button type="button" class="close" aria-label="Close">
+								<span aria-hidden="true"></span>
+							</button>
+					    </div>
 					@endif
 
-					{{  Form::open( array('url' => route('newsastrons.store'), 'files'=>true,'method'=>'post') )  }}
-
-						<div class="mb-3">
-
-							<label for="headline">Headline</label>
-							<input type="text" class="form-control" name="headline" placeholder="Headline goes here ..." required="required" maxlength="70" autofocus>
-
-						</div>
-
-						<div class="mb-3">
-
-							<label for="newsline1">News String 1</label>
-							<input type="text" class="form-control" name="paragraph_1" placeholder="News String goes here ..." required="required" maxlength="70">
-
-						</div>
-
-						<div class="mb-3">
-
-							<label for="newsline2">News String 2</label>
-							<input type="text" class="form-control" name="paragraph_2" placeholder="News String goes here ..." required="required" maxlength="70">
-
-						</div>
-
-						<button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
-
-					{{ Form::close() }}
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<td>
+									<a href="{{ url('/exportNumbersOnly') }}" title="Click For Export" @isset($numbersOnlyId)
+										@if ( $numbersOnlyId == 1)
+											class="btn disabled"
+										@else
+											class="btn"
+										@endif
+									@endisset>
+										<i class="fas fa-hourglass-start fa-5x"></i>
+									</a>
+								</td>
+								<td>
+									<a href="{{ url('/exportNumbersOnly') }}" title="Click For Export" class="float-right">
+										<i class="far fa-plus-square fa-5x"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
 				</div>
 
@@ -117,7 +108,7 @@
 
 			<footer class="my-5 pt-5 text-muted text-center text-small">
 
-				<p class="mb-1">&copy; 2017- Company Name</p>
+				<p class="mb-1">&copy; 2020- Ekattor Media Limited</p>
 				
 				<ul class="list-inline">
 					<li class="list-inline-item"><a href="#">Privacy</a></li>

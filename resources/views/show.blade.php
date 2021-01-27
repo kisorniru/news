@@ -4,7 +4,7 @@
 
 	<head>
 
-	  	<title>Bootstrap Example</title>
+	  	<title>Ekattor Media Limited</title>
 	  	<meta charset="utf-8">
 	  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -32,6 +32,15 @@
 			  color: #fff;
 			  text-decoration: none;
 			}
+
+			.fa-file-download {
+			  color: rgb(163, 37, 31);
+			}
+
+			.recent {
+				font-size: 70px;
+			}
+
 	  	</style>
 	</head>
 	
@@ -39,11 +48,13 @@
 
 		<nav class="site-header sticky-top py-1">
 	      <div class="container d-flex flex-column flex-md-row justify-content-between">
-	        <a class="py-2" href="#">
+	        <a class="py-2" href="{{ url('/') }}">
 	          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
 	        </a>
-	        <a class="py-2" href="{{ url('/create') }}">ADD</a>
-	        <a class="py-2" href="{{ url('/show') }}">LIST</a>
+	        <a class="py-2" href="{{ route('newsastrons.create') }}">Add</a>
+	        <a class="py-2" href="{{ url('/numbersOnly') }}">Number Only</a>
+	        <a class="py-2" href="{{ route('newsastrons.index') }}">List</a>
+	        <a class="py-2" href="{{ url('/huaweiCloud') }}">Huawei Cloud</a>
 	      </div>
 	    </nav>
 
@@ -51,7 +62,7 @@
 			
 			<div class="py-3 text-center">
 
-				<img class="d-block mx-auto mb-4" src="{{ asset('ekattor_tv_logo.png') }}" alt="" width="72" height="72">
+				<img class="d-block mx-auto mb-4" src="{{ asset('ekattor_tv_logo.png') }}" alt="" width="auto" height="108">
 
 			</div>
 
@@ -59,7 +70,35 @@
 
 				<div class="col-md-12 offset-md-0">
 					
-					<h4 class="mb-3">Recent News</h4>
+					<h4 class="mb-3">Current News</h4>
+					<!-- @if (session('recentHeadline')) -->
+					    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+					        {{ session('recentHeadline') }} <br>
+					        {{ session('recentParagraph_1') }} <br>
+					        {{ session('recentParagraph_2') }}
+					        <button type="button" class="close recent" aria-label="Close">
+								<span aria-hidden="true">{{ session('recentHeadlineID') }}</span>
+							</button>
+					    </div>
+					<!-- @endif -->
+
+					@if (session('status'))
+					    <div class="alert alert-success alert-dismissible fade show" role="alert">
+					        {{ session('status') }}
+					        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					    </div>
+					@endif
+
+					@if (session('succses_message_for_Update'))
+					    <div class="alert alert-success alert-dismissible fade show" role="alert">
+					        {{ session('succses_message_for_Update') }}
+					        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					    </div>
+					@endif
 
 					<table class="table table-hover">
 						<thead>
@@ -72,17 +111,20 @@
 						<tbody>
 							@foreach ($NewsAstrons as $NewsAstron)
 								<tr>
-									<th scope="row">{{ $loop->iteration }}</th>
+									<th scope="row">
+										<a href="{{url('/edit',$NewsAstron->id)}}" title="Click For Edit" style="text-decoration: none;"><i class="fas fa-edit"></i> {{ $NewsAstron->id }} </a>
+									</th>
 									<td>
-										<code>Headline:</code><br>{{ $NewsAstron->headline }} <br>
-										<code>paragraph:</code><br>{{ $NewsAstron->paragraph_1 }} <br>
+										<code>Headline:</code><br>
+										{{ $NewsAstron->headline }} <br>
+										<code>paragraph:</code><br>
+										{{ $NewsAstron->paragraph_1 }} <br>
 										{{ $NewsAstron->paragraph_2 }} <br>
-										{{ $NewsAstron->paragraph_3 }} <br>
 									</td>
 									<td>
-										{{ Form::open([ 'method'  => 'DELETE', 'route' => [ 'newsastrons.destroy', $NewsAstron->id ] ]) }}
-						                    {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-						                {{ Form::close() }}
+										@if ($loop->first)
+											<a href="{{ url('/export', $NewsAstron->id) }}" title="Click For Export"><i class="fas fa-file-download fa-5x"></i></a>
+										@endif
 									</td>
 								</tr>
 							@endforeach
@@ -95,7 +137,7 @@
 
 			<footer class="my-5 pt-5 text-muted text-center text-small">
 
-				<p class="mb-1">&copy; 2017- Company Name</p>
+				<p class="mb-1">&copy; 2020- Ekattor Media Limited</p>
 				
 				<ul class="list-inline">
 					<li class="list-inline-item"><a href="#">Privacy</a></li>

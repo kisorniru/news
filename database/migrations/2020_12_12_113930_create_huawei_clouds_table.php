@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsAstronsTable extends Migration
+class CreateHuaweiCloudsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateNewsAstronsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_astrons', function (Blueprint $table) {
+        Schema::create('huawei_clouds', function (Blueprint $table) {
             $table->id();
-            $table->string('headline', 500);
-            $table->string('paragraph_1', 1000);
-            $table->string('paragraph_2', 1000)->nullable();
-            $table->integer('isExported')->default(0);
+            $table->string('code', 100);
+            $table->string('name', 1000);
+            $table->string('details', 1500)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateNewsAstronsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_astrons');
+        Schema::dropIfExists('huawei_clouds');
     }
 }

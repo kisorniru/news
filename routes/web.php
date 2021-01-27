@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsAstronController;
+use App\Http\Controllers\NumbersOnlyController;
+use App\Http\Controllers\HuaweiCloudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,8 @@ use App\Http\Controllers\NewsAstronController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/export/{id}',  [NewsAstronController::class, 'export']);
+Route::get('/edit/{id}',    [NewsAstronController::class, 'edit']);
 
 Route::resource('/', NewsAstronController::class)
 		->names([
@@ -28,3 +29,11 @@ Route::resource('/', NewsAstronController::class)
 		    'update' 	=> 'newsastrons.update',
 		    'destroy' 	=> 'newsastrons.destroy'
 		]);
+
+Route::resource('newsastrons', NewsAstronController::class);
+
+Route::resource('numbersOnly', 		NumbersOnlyController::class);
+Route::get('/exportNumbersOnly',    [NumbersOnlyController::class, 'exportNumbersOnly']);
+
+Route::get('/huaweiCloud/edit/{id}',    [HuaweiCloudController::class, 'edit']);
+Route::resource('huaweiCloud', 		HuaweiCloudController::class);

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NewsAstron extends Model
+class HuaweiCloud extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,6 @@ class NewsAstron extends Model
      * @var array
      */
     protected $fillable = [
-        'headline',
-        'paragraph_1',
-        'paragraph_2',
-        'isExported',
+        'code','name', 'details',
     ];
 }

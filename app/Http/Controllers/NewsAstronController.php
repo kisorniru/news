@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use Response;
+use Carbon\Carbon;
 use App\Models\NewsAstron;
 use Illuminate\Http\Request;
 
@@ -17,26 +20,46 @@ class NewsAstronController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function export($id)
     {
-        // $ms =  $newsAstron->get();
-        
-        $NewsAstrons = NewsAstron::get();
-        return view('show')->with('NewsAstrons', $NewsAstrons);
+        $NewsAstron = NewsAstron::find($id);
+        $NewsAstron->isExported = 1;
+        $NewsAstron->save();
 
-        $NewsAstron = NewsAstron::get();
         $formatter = Formatter::make($NewsAstron, Formatter::JSON);
         $xml   = $formatter->toXml();
-        // return $xml;
 
         //config
-        $namefile = "news.xml";
+        $path = '//192.168.0.93/Users/Public/XML/';
+        $namefile = $path."Viz.xml";
         $content = $xml;
 
         //save file
         $file = fopen($namefile, "w") or die("Unable to open file!");
         fwrite($file, $content);
         fclose($file);
+
+        session([
+            'recentHeadlineID'  => $NewsAstron->id,
+            'recentHeadline'    => $NewsAstron->headline,
+            'recentParagraph_1' => $NewsAstron->paragraph_1,
+            'recentParagraph_2' => $NewsAstron->paragraph_2,
+        ]);
+
+        return back()->with('status', 'Viz.xml file successfully updated.');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $NewsAstrons = NewsAstron::where('isExported', 0)
+                        ->whereDate('created_at', Carbon::today())
+                        ->get();
+        return view('show')->with('NewsAstrons', $NewsAstrons);
     }
 
     /**
@@ -46,7 +69,14 @@ class NewsAstronController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $NewsAstrons = NewsAstron::latest()->first();
+        if ($NewsAstrons) {
+            $id = $NewsAstrons->id + 1;
+        } else {
+            $id = 1;
+        }
+
+        return view('create')->with('id', $id);
     }
 
     /**
@@ -58,13 +88,14 @@ class NewsAstronController extends Controller
     public function store(Request $request)
     {
         $NewsAstron = new NewsAstron;
-        $NewsAstron->headline = $request['headline'];
+        $NewsAstron->headline = $request->headline;
         $NewsAstron->paragraph_1 = $request->paragraph_1;
         $NewsAstron->paragraph_2 = $request->paragraph_2;
-        $NewsAstron->paragraph_3 = $request->paragraph_3;
         $NewsAstron->save();
 
-        return back()->with('status', 'Successfully added!');
+        // return $NewsAstron;
+
+        return back()->with(['status' => 'Successfully added!', 'dataId' => $NewsAstron->id]);
     }
 
     /**
@@ -84,9 +115,10 @@ class NewsAstronController extends Controller
      * @param  \App\Models\newsAstron  $newsAstron
      * @return \Illuminate\Http\Response
      */
-    public function edit(newsAstron $newsAstron)
+    public function edit(newsAstron $newsAstron, $id)
     {
-        return "Hello-2";
+        $editNews = NewsAstron::findorFail($id);
+        return view('edit',compact('editNews'));
     }
 
     /**
@@ -96,9 +128,22 @@ class NewsAstronController extends Controller
      * @param  \App\Models\newsAstron  $newsAstron
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, newsAstron $newsAstron)
+    public function update(Request $request, newsAstron $newsAstron ,$id)
     {
-        //
+        
+        $headline           = $request->headline;
+        $paragraph_1        = $request->paragraph_1;
+        $paragraph_2        = $request->paragraph_2;
+        $find_newsAstron    = newsAstron::findOrFail($id);
+
+        $update_newsAstron  =   $find_newsAstron->update([
+            'headline'      =>  $headline,
+            'paragraph_1'   =>  $paragraph_1,
+            'paragraph_2'   =>  $paragraph_2,
+            ]);
+        
+        return redirect('/')->with('succses_message_for_Update', 'Successfully Updates!');
+
     }
 
     /**
